@@ -1,130 +1,44 @@
 const express = require('express');
+const fs = require('fs');
 
 const port = 4000;
 
 const app = express();
 
 app.get('/', (req, res) => {
-	res.send(`
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Express.js</title>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-            margin: 50px;
-            background-color: #ddd;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div>
-            <h1>I am Home Route</h1>
-            <div>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis a blanditiis impedit voluptates. Omnis maxime, vero itaque, fuga rem ducimus consectetur quas eveniet doloremque perspiciatis eaque earum voluptas. Excepturi, illum!
-            </div>
-        </div>
-    </header>
-</body>
-</html>
-    `);
+	fs.readFile('./pages/index.html', (err, data) => {
+		if (err) {
+			console.log('Error: ', err);
+			res.send('<h1>Something went wrong</h1>');
+		} else {
+			res.write(data);
+			res.end();
+		}
+	});
 });
 
 app.get('/about', (req, res) => {
-	res.send(`
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Express.js</title>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-            margin: 50px;
-            background-color: #ddd;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div>
-            <h1>I am about Route</h1>
-            <div>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis a blanditiis impedit voluptates. Omnis maxime, vero itaque, fuga rem ducimus consectetur quas eveniet doloremque perspiciatis eaque earum voluptas. Excepturi, illum!
-            </div>
-        </div>
-    </header>
-</body>
-</html>
-    `);
+	fs.readFile('./pages/about.html', (err, data) => {
+		if (err) {
+			console.log('Error: ', err);
+			res.send('<h1>Something went wrong</h1>');
+		} else {
+			res.write(data);
+			res.end();
+		}
+	});
 });
 
 app.get('/help', (req, res) => {
-	res.send(`
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Express.js</title>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-            margin: 50px;
-            background-color: #ddd;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div>
-            <h1>I am help Route</h1>
-            <div>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis a blanditiis impedit voluptates. Omnis maxime, vero itaque, fuga rem ducimus consectetur quas eveniet doloremque perspiciatis eaque earum voluptas. Excepturi, illum!
-            </div>
-        </div>
-    </header>
-</body>
-</html>
-    `);
+	fs.readFile('./pages/help.html', (err, data) => {
+		if (err) {
+			console.log('Error: ', err);
+			res.send('<h1>something went wrong</h1>');
+		} else {
+			res.write(data);
+			res.end();
+		}
+	});
 });
 
 app.listen(port, () => {
