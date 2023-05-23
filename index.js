@@ -1,9 +1,16 @@
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
+const morgan = require('morgan');
 
 const port = 4000;
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(cors());
 
 app.get('/', (req, res) => {
 	fs.readFile('./pages/index.html', (err, data) => {
