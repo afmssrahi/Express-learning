@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require('fs');
+
 const cors = require('cors');
 const morgan = require('morgan');
 
@@ -14,41 +14,7 @@ app.use(cors());
 
 app.use(globalMiddleware);
 
-app.get('/', (req, res) => {
-	fs.readFile('./pages/index.html', (err, data) => {
-		if (err) {
-			console.log('Error: ', err);
-			res.send('<h1>Something went wrong</h1>');
-		} else {
-			res.write(data);
-			res.end();
-		}
-	});
-});
-
-app.get('/about', localMiddleware, (req, res) => {
-	fs.readFile('./pages/about.html', (err, data) => {
-		if (err) {
-			console.log('Error: ', err);
-			res.send('<h1>Something went wrong</h1>');
-		} else {
-			res.write(data);
-			res.end();
-		}
-	});
-});
-
-app.get('/help', (req, res) => {
-	fs.readFile('./pages/help.html', (err, data) => {
-		if (err) {
-			console.log('Error: ', err);
-			res.send('<h1>something went wrong</h1>');
-		} else {
-			res.write(data);
-			res.end();
-		}
-	});
-});
+app.use(require('./routes'));
 
 function globalMiddleware(req, res, next) {
 	console.log(`${req.method} - ${req.url}`);
@@ -57,12 +23,6 @@ function globalMiddleware(req, res, next) {
 	if (req.query.bad) {
 		return res.status(400).send('Bad Request');
 	}
-
-	next();
-}
-
-function localMiddleware(req, res, next) {
-	console.log('I am local middleware');
 
 	next();
 }
