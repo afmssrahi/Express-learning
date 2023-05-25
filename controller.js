@@ -4,9 +4,11 @@ exports.homeController = (req, res) => {
 };
 
 exports.aboutController = (req, res) => {
-	res.render('pages/about');
+	const title = 'About Title';
+	res.render('pages/about', { title });
 };
 
 exports.helpController = (req, res) => {
-	res.render('pages/help');
+	const title = 'Help Title';
+	res.render('pages/help', { title });
 };
