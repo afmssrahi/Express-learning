@@ -9,8 +9,31 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/style.css">
+  <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+            margin: 50px;
+            background-color: #ddd;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+  <div>
+            <nav>
+                <a href="/">home</a>
+                <a href="/about">about</a>
+                <a href="/help">help</a>
+            </nav>
+        </div>
     <h2><%= title %></h2>
     <h1>Hello-Bootstrap</h1>
     <small><%= new Date().toISOString() %></small>
